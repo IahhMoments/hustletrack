@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { MobileSidebar } from './MobileSidebar'
 import { useRouter } from 'next/navigation'
 import type { User } from '@supabase/supabase-js'
 import { createClient } from '@/lib/supabase/client'
@@ -27,7 +28,7 @@ export function Navbar({ user }: { user: User }) {
 
   return (
     <header className="h-14 border-b flex items-center justify-between px-4 md:px-6 shrink-0">
-      <div id="mobile-nav-slot" />
+      <MobileSidebar />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
