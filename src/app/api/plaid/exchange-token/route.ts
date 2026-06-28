@@ -39,8 +39,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: true, accounts_linked: accounts.length })
-  } catch (err: any) {
-    console.error('Exchange token error:', err?.response?.data ?? err.message ?? err)
+  } catch (err) {
+    const e = err as Record<string, unknown>
+    console.error('Exchange token error:', (e?.['response'] as Record<string, unknown>)?.['data'] ?? e?.['message'] ?? err)
     return NextResponse.json({ error: 'Exchange failed' }, { status: 500 })
   }
 }

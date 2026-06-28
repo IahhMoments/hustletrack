@@ -1,4 +1,4 @@
-// /src/app/layout.tsx
+import './global.css'
 import { Toaster } from '@/components/ui/sonner'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

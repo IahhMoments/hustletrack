@@ -1,6 +1,6 @@
-'use client'
+﻿'use client'
 
-import { ColumnDef } from '@tanstack/react-table'
+import { ColumnDef, Column } from '@tanstack/react-table'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowUpDown } from 'lucide-react'
@@ -15,7 +15,7 @@ export type Transaction = {
   is_hustle_income: boolean
 }
 
-function SortHeader({ label, column }: { label: string; column: any }) {
+function SortHeader({ label, column }: { label: string; column: Column<Transaction, unknown> }) {
   return (
     <Button variant="ghost" size="sm" className="-ml-3 h-8 font-medium"
       onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
@@ -58,7 +58,7 @@ export const columns: ColumnDef<Transaction>[] = [
     header: 'Category',
     cell: ({ row }) => {
       const raw = row.getValue<string | null>('category') ?? 'Uncategorized'
-      const label = raw.replace(/_/g, ' ').toLowerCase().replace(/w/g, (c) => c.toUpperCase())
+      const label = raw.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
       return <Badge variant="secondary" className="text-xs font-normal whitespace-nowrap">{label}</Badge>
     },
   },
